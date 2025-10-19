@@ -41,7 +41,7 @@ export const businessProfile = reactive({
 //     // Data Tambahan
 //     businessProfile.description = "Profil bisnis dimuat."; // Tambahkan description default // URL Logo
 //     if (businessDetail.image_url) {
-//       businessProfile.logoUrl = `http://localhost:8080/${businessDetail.image_url}`;
+//       businessProfile.logoUrl = `https://hematbox.sugengaldi.my.id/${businessDetail.image_url}`;
 //     } // [OPSIONAL] Mapping Jam Operasional jika ada // businessProfile.operatingHours = businessDetail.offers; // Gantilah ini dengan field jam operasional jika sudah ada
 //   } catch (error) {
 //     console.error("Gagal mengambil detail bisnis:", error); // Tampilkan pesan error di UI
@@ -83,7 +83,7 @@ export async function fetchBusinessProfile() {
       if (businessDetail.image_url.startsWith("http")) {
         businessProfile.logoUrl = businessDetail.image_url;
       } else {
-        businessProfile.logoUrl = `http://localhost:8080/${businessDetail.image_url}`;
+        businessProfile.logoUrl = `https://hematbox.sugengaldi.my.id/${businessDetail.image_url}`;
       }
     } else {
       // Sediakan placeholder jika tidak ada gambar dari API

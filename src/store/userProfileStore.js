@@ -31,7 +31,7 @@ export async function fetchUserProfile() {
     // Logika untuk menangani URL Avatar
     if (userData.avatar_url) {
       // Jika ada avatar dari backend, buat URL lengkapnya
-      userProfile.avatar_url = `http://localhost:8080/${userData.avatar_url}`;
+      userProfile.avatar_url = `https://hematbox.sugengaldi.my.id/${userData.avatar_url}`;
     } else {
       // Jika tidak ada, gunakan avatar default berdasarkan inisial nama
       userProfile.avatar_url = `https://ui-avatars.com/api/?name=${encodeURIComponent(

@@ -7,7 +7,7 @@ import router from "@/router"; // Impor router untuk redirect
 // const apiClient = axios.create({
 //   // URL dasar ini harus cocok dengan grup rute di Go Anda
 //   baseURL:
-//     import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api/v1/auth",
+//     import.meta.env.VITE_API_BASE_URL || "https://hematbox.sugengaldi.my.id/api/v1/auth",
 //   headers: {
 //     "Content-Type": "application/json",
 //   },

@@ -34,7 +34,7 @@ watch(
         image: null,
       };
       imagePreview.value = props.offer.image_url
-        ? `http://localhost:8080/${props.offer.image_url}`
+        ? `https://hematbox.sugengaldi.my.id/${props.offer.image_url}`
         : null;
     }
   }
@@ -144,7 +144,7 @@ watch(
       validationError.value = "";
 
       imagePreview.value = props.offer.image_url
-        ? `http://localhost:8080/${props.offer.image_url}`
+        ? `https://hematbox.sugengaldi.my.id/${props.offer.image_url}`
         : null;
     }
   }
@@ -293,7 +293,7 @@ watch(
       validationError.value = "";
 
       imagePreview.value = newOffer.image_url
-        ? `http://localhost:8080/${newOffer.image_url}`
+        ? `https://hematbox.sugengaldi.my.id/${newOffer.image_url}`
         : null;
     }
   },
@@ -356,48 +356,28 @@ const saveOffer = () => {
 </script>
 
 <template>
-  <Transition
-    enter-active-class="transition-opacity duration-300 ease-out"
-    enter-from-class="opacity-0"
-    enter-to-class="opacity-100"
-    leave-active-class="transition-opacity duration-200 ease-in"
-    leave-from-class="opacity-100"
-    leave-to-class="opacity-0"
-  >
-    <div
-      v-if="isVisible"
+  <Transition enter-active-class="transition-opacity duration-300 ease-out" enter-from-class="opacity-0"
+    enter-to-class="opacity-100" leave-active-class="transition-opacity duration-200 ease-in"
+    leave-from-class="opacity-100" leave-to-class="opacity-0">
+    <div v-if="isVisible"
       class="fixed inset-0 bg-gradient-to-br from-black/70 via-emerald-900/20 to-black/70 z-40 flex items-center justify-center p-4 backdrop-blur-md"
-      @click="closeModal"
-    >
-      <Transition
-        enter-active-class="transition-all duration-500 ease-out"
-        enter-from-class="opacity-0 scale-90 rotate-3"
-        enter-to-class="opacity-100 scale-100 rotate-0"
-        leave-active-class="transition-all duration-300 ease-in"
-        leave-from-class="opacity-100 scale-100 rotate-0"
-        leave-to-class="opacity-0 scale-90 -rotate-3"
-      >
-        <div
-          v-if="isVisible"
-          @click.stop
-          class="bg-gradient-to-br from-white via-emerald-50/30 to-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col border-2 border-emerald-100/50 overflow-hidden relative"
-        >
+      @click="closeModal">
+      <Transition enter-active-class="transition-all duration-500 ease-out"
+        enter-from-class="opacity-0 scale-90 rotate-3" enter-to-class="opacity-100 scale-100 rotate-0"
+        leave-active-class="transition-all duration-300 ease-in" leave-from-class="opacity-100 scale-100 rotate-0"
+        leave-to-class="opacity-0 scale-90 -rotate-3">
+        <div v-if="isVisible" @click.stop
+          class="bg-gradient-to-br from-white via-emerald-50/30 to-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col border-2 border-emerald-100/50 overflow-hidden relative">
           <!-- Decorative gradient overlay -->
-          <div
-            class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400"
-          ></div>
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-400">
+          </div>
 
           <!-- Header dengan gradient -->
           <div
-            class="flex justify-between items-center p-6 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 text-white relative overflow-hidden"
-          >
+            class="flex justify-between items-center p-6 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 text-white relative overflow-hidden">
             <!-- Decorative circles -->
-            <div
-              class="absolute -top-10 -left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"
-            ></div>
-            <div
-              class="absolute -bottom-10 -right-10 w-40 h-40 bg-teal-400/20 rounded-full blur-3xl"
-            ></div>
+            <div class="absolute -top-10 -left-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-teal-400/20 rounded-full blur-3xl"></div>
 
             <div class="relative z-10 flex items-center gap-3">
               <div class="bg-white/20 p-2.5 rounded-xl backdrop-blur-sm">
@@ -405,10 +385,8 @@ const saveOffer = () => {
               </div>
               <h3 class="text-2xl font-bold tracking-tight">Edit Penawaran</h3>
             </div>
-            <button
-              @click="closeModal"
-              class="relative z-10 p-2.5 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-xl transition-all duration-200 hover:scale-110 hover:rotate-90"
-            >
+            <button @click="closeModal"
+              class="relative z-10 p-2.5 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-xl transition-all duration-200 hover:scale-110 hover:rotate-90">
               <Icon icon="mdi:close" class="w-6 h-6" />
             </button>
           </div>
@@ -418,123 +396,71 @@ const saveOffer = () => {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <!-- Judul -->
               <div class="group">
-                <label
-                  for="title"
-                  class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2"
-                >
-                  <Icon
-                    icon="mdi:format-title"
-                    class="w-4 h-4 text-emerald-600"
-                  />
+                <label for="title" class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2">
+                  <Icon icon="mdi:format-title" class="w-4 h-4 text-emerald-600" />
                   Judul Penawaran
                 </label>
                 <div class="relative">
-                  <input
-                    id="title"
-                    v-model="offerData.title"
-                    type="text"
+                  <input id="title" v-model="offerData.title" type="text"
                     class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl shadow-sm focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-200 group-hover:border-emerald-300"
-                    placeholder="Masukkan judul menarik"
-                  />
+                    placeholder="Masukkan judul menarik" />
                 </div>
               </div>
 
               <!-- Harga -->
               <div class="group">
-                <label
-                  for="price"
-                  class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2"
-                >
+                <label for="price" class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2">
                   <Icon icon="mdi:cash" class="w-4 h-4 text-emerald-600" />
                   Harga
                 </label>
                 <div class="relative">
-                  <span
-                    class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-semibold"
-                    >Rp</span
-                  >
-                  <input
-                    id="price"
-                    v-model.number="offerData.price"
-                    type="number"
+                  <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-semibold">Rp</span>
+                  <input id="price" v-model.number="offerData.price" type="number"
                     class="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl shadow-sm focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-200 group-hover:border-emerald-300"
-                    placeholder="0"
-                  />
+                    placeholder="0" />
                 </div>
               </div>
             </div>
 
             <!-- Deskripsi -->
             <div class="group">
-              <label
-                for="description"
-                class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2"
-              >
+              <label for="description" class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2">
                 <Icon icon="mdi:text-box" class="w-4 h-4 text-emerald-600" />
                 Deskripsi
               </label>
-              <textarea
-                id="description"
-                v-model="offerData.description"
-                rows="3"
+              <textarea id="description" v-model="offerData.description" rows="3"
                 class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl shadow-sm focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-200 resize-none group-hover:border-emerald-300"
-                placeholder="Jelaskan penawaran Anda..."
-              ></textarea>
+                placeholder="Jelaskan penawaran Anda..."></textarea>
             </div>
 
             <!-- Porsi & Status -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
               <div class="group">
-                <label
-                  for="total_portion"
-                  class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2"
-                >
+                <label for="total_portion" class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2">
                   <Icon icon="mdi:food" class="w-4 h-4 text-emerald-600" />
                   Total Porsi
                 </label>
-                <input
-                  id="total_portion"
-                  v-model.number="offerData.total_portion"
-                  type="number"
-                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl shadow-sm focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-200 group-hover:border-emerald-300"
-                />
+                <input id="total_portion" v-model.number="offerData.total_portion" type="number"
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl shadow-sm focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-200 group-hover:border-emerald-300" />
               </div>
 
               <div class="group">
-                <label
-                  for="remaining_portion"
-                  class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2"
-                >
-                  <Icon
-                    icon="mdi:food-variant"
-                    class="w-4 h-4 text-emerald-600"
-                  />
+                <label for="remaining_portion"
+                  class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2">
+                  <Icon icon="mdi:food-variant" class="w-4 h-4 text-emerald-600" />
                   Sisa Porsi
                 </label>
-                <input
-                  id="remaining_portion"
-                  v-model.number="offerData.remaining_portion"
-                  type="number"
-                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl shadow-sm focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-200 group-hover:border-emerald-300"
-                />
+                <input id="remaining_portion" v-model.number="offerData.remaining_portion" type="number"
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl shadow-sm focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-200 group-hover:border-emerald-300" />
               </div>
 
               <div class="group">
-                <label
-                  for="status"
-                  class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2"
-                >
-                  <Icon
-                    icon="mdi:toggle-switch"
-                    class="w-4 h-4 text-emerald-600"
-                  />
+                <label for="status" class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2">
+                  <Icon icon="mdi:toggle-switch" class="w-4 h-4 text-emerald-600" />
                   Status
                 </label>
-                <select
-                  id="status"
-                  v-model="offerData.status"
-                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl shadow-sm focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-200 appearance-none bg-white cursor-pointer group-hover:border-emerald-300"
-                >
+                <select id="status" v-model="offerData.status"
+                  class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl shadow-sm focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all duration-200 appearance-none bg-white cursor-pointer group-hover:border-emerald-300">
                   <option value="aktif">✓ Aktif</option>
                   <option value="tidak_aktif">✕ Tidak Aktif</option>
                 </select>
@@ -584,85 +510,53 @@ const saveOffer = () => {
                   <Icon icon="mdi:calendar" class="w-4 h-4 ..." />
                   Tanggal Pickup
                 </label>
-                <input
-                  id="edit-pickup-date"
-                  v-model="offerData.pickup_date"
-                  type="date"
-                  required
-                  class="w-full px-4 py-3 border-2 ..."
-                />
+                <input id="edit-pickup-date" v-model="offerData.pickup_date" type="date" required
+                  class="w-full px-4 py-3 border-2 ..." />
               </div>
               <div class="group"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div class="group">
-                <label
-                  for="edit-pickup-start-time"
-                  class="text-sm font-bold ..."
-                >
+                <label for="edit-pickup-start-time" class="text-sm font-bold ...">
                   <Icon icon="mdi:clock-start" class="w-4 h-4 ..." />
                   Waktu Mulai Ambil
                 </label>
-                <input
-                  id="edit-pickup-start-time"
-                  v-model="offerData.pickup_start_time"
-                  type="time"
-                  required
-                  class="w-full px-4 py-3 border-2 ..."
-                />
+                <input id="edit-pickup-start-time" v-model="offerData.pickup_start_time" type="time" required
+                  class="w-full px-4 py-3 border-2 ..." />
               </div>
               <div class="group">
                 <label for="edit-pickup-end-time" class="text-sm font-bold ...">
                   <Icon icon="mdi:clock-end" class="w-4 h-4 ..." />
                   Waktu Selesai Ambil
                 </label>
-                <input
-                  id="edit-pickup-end-time"
-                  v-model="offerData.pickup_end_time"
-                  type="time"
-                  required
-                  class="w-full px-4 py-3 border-2 ..."
-                />
+                <input id="edit-pickup-end-time" v-model="offerData.pickup_end_time" type="time" required
+                  class="w-full px-4 py-3 border-2 ..." />
               </div>
             </div>
 
             <!-- Upload Gambar -->
             <div>
-              <label
-                class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2"
-              >
+              <label class="text-sm font-bold text-gray-700 mb-2 block flex items-center gap-2">
                 <Icon icon="mdi:image" class="w-4 h-4 text-emerald-600" />
                 Ganti Gambar (Opsional)
               </label>
 
-              <div
-                v-if="!imagePreview"
-                @dragover.prevent="isDragging = true"
-                @dragleave.prevent="isDragging = false"
-                @drop.prevent="handleDrop"
-                :class="[
+              <div v-if="!imagePreview" @dragover.prevent="isDragging = true" @dragleave.prevent="isDragging = false"
+                @drop.prevent="handleDrop" :class="[
                   'mt-2 flex justify-center px-6 py-8 border-3 border-dashed rounded-2xl cursor-pointer transition-all duration-300 relative overflow-hidden',
                   isDragging
                     ? 'bg-gradient-to-br from-emerald-50 to-teal-50 border-emerald-400 scale-105 shadow-lg'
                     : 'bg-gradient-to-br from-gray-50 to-white border-gray-300 hover:border-emerald-400 hover:shadow-md hover:scale-102',
-                ]"
-                @click="$refs.fileInput.click()"
-              >
+                ]" @click="$refs.fileInput.click()">
                 <div class="space-y-3 text-center relative z-10">
                   <div
-                    class="mx-auto w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg"
-                  >
-                    <Icon
-                      icon="mdi:cloud-upload-outline"
-                      class="w-8 h-8 text-white"
-                    />
+                    class="mx-auto w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg">
+                    <Icon icon="mdi:cloud-upload-outline" class="w-8 h-8 text-white" />
                   </div>
                   <div>
                     <p class="text-sm text-gray-700 font-medium">
-                      <span class="font-bold text-emerald-600 text-base"
-                        >Klik untuk upload</span
-                      >
+                      <span class="font-bold text-emerald-600 text-base">Klik untuk upload</span>
                       <br />
                       atau seret dan lepas gambar di sini
                     </p>
@@ -671,36 +565,24 @@ const saveOffer = () => {
                     </p>
                   </div>
                 </div>
-                <input
-                  ref="fileInput"
-                  type="file"
-                  @change="handleFileChange"
-                  accept="image/*"
-                  class="hidden"
-                />
+                <input ref="fileInput" type="file" @change="handleFileChange" accept="image/*" class="hidden" />
               </div>
 
               <div v-else class="mt-3 relative w-full max-w-xs mx-auto group">
                 <div
-                  class="relative rounded-2xl overflow-hidden shadow-xl ring-4 ring-emerald-100 group-hover:ring-emerald-300 transition-all duration-300"
-                >
-                  <img
-                    :src="imagePreview"
-                    alt="Preview"
-                    class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                  class="relative rounded-2xl overflow-hidden shadow-xl ring-4 ring-emerald-100 group-hover:ring-emerald-300 transition-all duration-300">
+                  <img :src="imagePreview" alt="Preview"
+                    class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  ></div>
+                    class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  </div>
                 </div>
-                <button
-                  @click="
-                    imagePreview = null;
-                    selectedImageFile =
-                      null; /* <-- UBAH INI, agar file baru batal di-upload */
-                  "
-                  class="absolute -top-3 -right-3 bg-gradient-to-br from-red-500 to-pink-500 p-2.5 rounded-full shadow-xl text-white hover:scale-110 hover:rotate-90 transition-all duration-300 ring-4 ring-white"
-                >
+                <button @click="
+                  imagePreview = null;
+                selectedImageFile =
+                  null; /* <-- UBAH INI, agar file baru batal di-upload */
+                "
+                  class="absolute -top-3 -right-3 bg-gradient-to-br from-red-500 to-pink-500 p-2.5 rounded-full shadow-xl text-white hover:scale-110 hover:rotate-90 transition-all duration-300 ring-4 ring-white">
                   <Icon icon="mdi:delete" class="w-5 h-5" />
                 </button>
               </div>
@@ -709,25 +591,20 @@ const saveOffer = () => {
 
           <!-- Footer Actions -->
           <div
-            class="flex justify-end items-center p-6 border-t-2 border-gray-100 gap-4 bg-gradient-to-r from-gray-50 via-white to-gray-50"
-          >
-            <button
-              @click="closeModal"
-              class="px-8 py-3 rounded-xl font-bold shadow-md transition-all duration-300 transform focus:outline-none focus:ring-4 bg-gray-200 text-gray-700 hover:bg-gray-300 active:scale-95 focus:ring-gray-300 hover:shadow-lg"
-            >
+            class="flex justify-end items-center p-6 border-t-2 border-gray-100 gap-4 bg-gradient-to-r from-gray-50 via-white to-gray-50">
+            <button @click="closeModal"
+              class="px-8 py-3 rounded-xl font-bold shadow-md transition-all duration-300 transform focus:outline-none focus:ring-4 bg-gray-200 text-gray-700 hover:bg-gray-300 active:scale-95 focus:ring-gray-300 hover:shadow-lg">
               Batal
             </button>
-            <button
-              @click="saveOffer"
-              class="px-8 py-3 rounded-xl font-bold shadow-lg transition-all duration-300 transform focus:outline-none focus:ring-4 bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 text-white hover:from-emerald-600 hover:via-emerald-700 hover:to-teal-700 active:scale-95 focus:ring-emerald-300 hover:shadow-xl hover:shadow-emerald-500/50 relative overflow-hidden group"
-            >
+            <button @click="saveOffer"
+              class="px-8 py-3 rounded-xl font-bold shadow-lg transition-all duration-300 transform focus:outline-none focus:ring-4 bg-gradient-to-r from-emerald-500 via-emerald-600 to-teal-600 text-white hover:from-emerald-600 hover:via-emerald-700 hover:to-teal-700 active:scale-95 focus:ring-emerald-300 hover:shadow-xl hover:shadow-emerald-500/50 relative overflow-hidden group">
               <span class="relative z-10 flex items-center gap-2">
                 <Icon icon="mdi:content-save" class="w-5 h-5" />
                 Simpan Perubahan
               </span>
               <div
-                class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-              ></div>
+                class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              </div>
             </button>
           </div>
         </div>

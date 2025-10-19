@@ -13,7 +13,7 @@ import businessService from "@/services/businessService.js"; // <-- TAMBAHKAN BA
 
 // --- TAMBAHAN UNTUK GAMBAR ---
 // Ganti dengan alamat backend Go Anda jika berbeda
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://hematbox.sugengaldi.my.id";
 
 const getImageUrl = (path) => {
   if (!path) {
@@ -317,78 +317,42 @@ const handleDeleteOffer = async () => {
 </script>
 
 <template>
-  <div
-    class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6"
-  >
-    <div
-      class="bg-white/70 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/20"
-    >
-      <div
-        class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6"
-      >
+  <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
+    <div class="bg-white/70 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-white/20">
+      <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
         <div>
           <h3 class="text-2xl font-bold text-gray-800 mb-1">
             Kelola Penawaran
           </h3>
           <p class="text-gray-600">Manajemen semua penawaran magic box Anda.</p>
         </div>
-        <button
-          @click="isAddModalOpen = true"
-          class="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-teal-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2"
-        >
+        <button @click="isAddModalOpen = true"
+          class="bg-gradient-to-r from-teal-500 to-emerald-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-teal-600 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2">
           <Icon icon="mdi:plus" class="w-5 h-5" />
           <span>Tambah Penawaran</span>
         </button>
       </div>
 
-      <div
-        class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 p-4 bg-gray-50/50 rounded-xl border border-gray-200/50"
-      >
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 p-4 bg-gray-50/50 rounded-xl border border-gray-200/50">
         <div class="relative">
-          <label
-            for="search"
-            class="text-sm font-semibold text-gray-600 mb-1 block"
-            >Pencarian</label
-          >
-          <Icon
-            icon="mdi:magnify"
-            class="w-5 h-5 text-gray-400 absolute top-10 left-3"
-          />
-          <input
-            v-model="searchQuery"
-            type="text"
-            id="search"
-            placeholder="Cari nama penawaran..."
-            class="w-full border-gray-300 rounded-lg py-2 pl-10 pr-4 focus:ring-teal-500 focus:border-teal-500 transition"
-          />
+          <label for="search" class="text-sm font-semibold text-gray-600 mb-1 block">Pencarian</label>
+          <Icon icon="mdi:magnify" class="w-5 h-5 text-gray-400 absolute top-10 left-3" />
+          <input v-model="searchQuery" type="text" id="search" placeholder="Cari nama penawaran..."
+            class="w-full border-gray-300 rounded-lg py-2 pl-10 pr-4 focus:ring-teal-500 focus:border-teal-500 transition" />
         </div>
         <div>
-          <label
-            for="status"
-            class="text-sm font-semibold text-gray-600 mb-1 block"
-            >Status</label
-          >
-          <select
-            v-model="statusFilter"
-            id="status"
-            class="w-full border-gray-300 rounded-lg py-2 px-3 focus:ring-teal-500 focus:border-teal-500 transition"
-          >
+          <label for="status" class="text-sm font-semibold text-gray-600 mb-1 block">Status</label>
+          <select v-model="statusFilter" id="status"
+            class="w-full border-gray-300 rounded-lg py-2 px-3 focus:ring-teal-500 focus:border-teal-500 transition">
             <option>Semua</option>
             <option>Aktif</option>
             <option>Tidak Aktif</option>
           </select>
         </div>
         <div>
-          <label
-            for="sort"
-            class="text-sm font-semibold text-gray-600 mb-1 block"
-            >Urutkan</label
-          >
-          <select
-            v-model="sortOrder"
-            id="sort"
-            class="w-full border-gray-300 rounded-lg py-2 px-3 focus:ring-teal-500 focus:border-teal-500 transition"
-          >
+          <label for="sort" class="text-sm font-semibold text-gray-600 mb-1 block">Urutkan</label>
+          <select v-model="sortOrder" id="sort"
+            class="w-full border-gray-300 rounded-lg py-2 px-3 focus:ring-teal-500 focus:border-teal-500 transition">
             <option>Terbaru</option>
             <option>Harga Terendah</option>
             <option>Harga Tertinggi</option>
@@ -398,20 +362,11 @@ const handleDeleteOffer = async () => {
       </div>
 
       <div v-if="isLoading" class="text-center py-16">
-        <Icon
-          icon="mdi:loading"
-          class="animate-spin w-12 h-12 text-teal-500 mx-auto"
-        />
+        <Icon icon="mdi:loading" class="animate-spin w-12 h-12 text-teal-500 mx-auto" />
         <p class="mt-4 text-gray-600">Memuat data penawaran...</p>
       </div>
-      <div
-        v-else-if="errorMessage"
-        class="text-center py-16 bg-red-50 rounded-xl"
-      >
-        <Icon
-          icon="mdi:alert-circle-outline"
-          class="w-12 h-12 text-red-500 mx-auto"
-        />
+      <div v-else-if="errorMessage" class="text-center py-16 bg-red-50 rounded-xl">
+        <Icon icon="mdi:alert-circle-outline" class="w-12 h-12 text-red-500 mx-auto" />
         <p class="mt-4 font-semibold text-red-700">{{ errorMessage }}</p>
       </div>
 
@@ -420,68 +375,45 @@ const handleDeleteOffer = async () => {
           <table class="w-full min-w-[800px]">
             <thead class="bg-gradient-to-r from-gray-50 to-gray-100">
               <tr>
-                <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider"
-                >
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
                   ID
                 </th>
-                <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider"
-                >
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
                   Gambar
                 </th>
-                <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider"
-                >
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
                   Nama
                 </th>
-                <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider"
-                >
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
                   Status
                 </th>
-                <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider"
-                >
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
                   Harga
                 </th>
-                <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider"
-                >
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
                   Sisa
                 </th>
-                <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider"
-                >
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
                   Waktu Berakhir
                 </th>
-                <th
-                  class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider"
-                >
+                <th class="px-6 py-4 text-left text-sm font-bold text-gray-700 uppercase tracking-wider">
                   Aksi
                 </th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-100">
-              <tr
-                v-for="offer in filteredAndSortedOffers"
-                :key="offer.id"
-                class="hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50 transition-colors"
-              >
+              <tr v-for="offer in filteredAndSortedOffers" :key="offer.id"
+                class="hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50 transition-colors">
                 <td class="px-6 py-5">
                   <div
-                    class="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-teal-500 to-emerald-600 text-white rounded-lg font-bold text-sm shadow"
-                  >
+                    class="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-teal-500 to-emerald-600 text-white rounded-lg font-bold text-sm shadow">
                     {{ offer.id }}
                   </div>
                 </td>
 
                 <td class="px-6 py-5">
-                  <img
-                    :src="getImageUrl(offer.image_url)"
-                    alt="Gambar Penawaran"
-                    class="w-16 h-16 object-cover rounded-lg shadow-md"
-                  />
+                  <img :src="getImageUrl(offer.image_url)" alt="Gambar Penawaran"
+                    class="w-16 h-16 object-cover rounded-lg shadow-md" />
                 </td>
 
                 <td class="px-6 py-5">
@@ -493,21 +425,15 @@ const handleDeleteOffer = async () => {
                   </div>
                 </td>
                 <td class="px-6 py-5">
-                  <span
-                    class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-semibold"
-                    :class="{
-                      'bg-emerald-100 text-emerald-800':
-                        offer.status === 'aktif',
-                      'bg-red-100 text-red-800': offer.status !== 'aktif',
-                    }"
-                  >
-                    <div
-                      class="w-2 h-2 rounded-full mr-2"
-                      :class="{
-                        'bg-emerald-500': offer.status === 'aktif',
-                        'bg-red-500': offer.status !== 'aktif',
-                      }"
-                    ></div>
+                  <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-semibold" :class="{
+                    'bg-emerald-100 text-emerald-800':
+                      offer.status === 'aktif',
+                    'bg-red-100 text-red-800': offer.status !== 'aktif',
+                  }">
+                    <div class="w-2 h-2 rounded-full mr-2" :class="{
+                      'bg-emerald-500': offer.status === 'aktif',
+                      'bg-red-500': offer.status !== 'aktif',
+                    }"></div>
                     {{ offer.status === "aktif" ? "Aktif" : "Tidak Aktif" }}
                   </span>
                 </td>
@@ -518,11 +444,9 @@ const handleDeleteOffer = async () => {
                 </td>
                 <td class="px-6 py-5">
                   <div class="flex items-center">
-                    <span class="text-sm font-medium text-gray-700"
-                      >{{ offer.remaining_portion || 0 }}/{{
-                        offer.total_portion || 0
-                      }}</span
-                    >
+                    <span class="text-sm font-medium text-gray-700">{{ offer.remaining_portion || 0 }}/{{
+                      offer.total_portion || 0
+                    }}</span>
                   </div>
                 </td>
                 <!-- <td class="px-6 py-5">
@@ -538,24 +462,16 @@ const handleDeleteOffer = async () => {
                 </td> -->
                 <td class="px-6 py-5">
                   <div class="flex items-center">
-                    <Icon
-                      icon="mdi:clock-outline"
-                      class="w-4 h-4 text-gray-400 mr-2"
-                    />
-                    <span
-                      class="font-medium text-gray-900 leading-tight"
-                      v-html="formatDateAndTime(offer.pickup_end)"
-                    >
+                    <Icon icon="mdi:clock-outline" class="w-4 h-4 text-gray-400 mr-2" />
+                    <span class="font-medium text-gray-900 leading-tight" v-html="formatDateAndTime(offer.pickup_end)">
                     </span>
                   </div>
                 </td>
                 <td class="px-6 py-5">
                   <div class="flex items-center gap-3">
-                    <button
-                      @click="openEditModal(offer)"
+                    <button @click="openEditModal(offer)"
                       class="p-2 bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-xl transition-colors"
-                      type="button"
-                    >
+                      type="button">
                       <Icon icon="mdi:pencil-outline" class="w-5 h-5" />
                     </button>
                     <!-- <button
@@ -565,11 +481,8 @@ const handleDeleteOffer = async () => {
                     >
                       <Icon icon="mdi:delete-outline" class="w-5 h-5" />
                     </button> -->
-                    <button
-                      @click="openDeleteModal(offer)"
-                      class="p-2 bg-red-100 hover:bg-red-200 text-red-600 rounded-xl transition-colors"
-                      type="button"
-                    >
+                    <button @click="openDeleteModal(offer)"
+                      class="p-2 bg-red-100 hover:bg-red-200 text-red-600 rounded-xl transition-colors" type="button">
                       <Icon icon="mdi:delete-outline" class="w-5 h-5" />
                     </button>
                   </div>
@@ -579,10 +492,7 @@ const handleDeleteOffer = async () => {
           </table>
         </div>
         <div v-else class="text-center py-16 px-6">
-          <Icon
-            icon="mdi:database-search-outline"
-            class="mx-auto w-12 h-12 text-gray-400"
-          />
+          <Icon icon="mdi:database-search-outline" class="mx-auto w-12 h-12 text-gray-400" />
           <h4 class="mt-4 text-lg font-semibold text-gray-700">
             Penawaran Tidak Ditemukan
           </h4>
@@ -593,21 +503,8 @@ const handleDeleteOffer = async () => {
       </div>
     </div>
 
-    <EditOfferModal
-      v-if="isEditModalOpen"
-      v-model="isEditModalOpen"
-      :offer="editingOffer"
-      @save="handleUpdateOffer"
-    />
-    <AddOfferModal
-      v-if="isAddModalOpen"
-      v-model="isAddModalOpen"
-      @save="handleAddOffer"
-    />
-    <DeleteConfirmModal
-      v-if="isDeleteModalOpen"
-      v-model="isDeleteModalOpen"
-      @confirm="handleDeleteOffer"
-    />
+    <EditOfferModal v-if="isEditModalOpen" v-model="isEditModalOpen" :offer="editingOffer" @save="handleUpdateOffer" />
+    <AddOfferModal v-if="isAddModalOpen" v-model="isAddModalOpen" @save="handleAddOffer" />
+    <DeleteConfirmModal v-if="isDeleteModalOpen" v-model="isDeleteModalOpen" @confirm="handleDeleteOffer" />
   </div>
 </template>

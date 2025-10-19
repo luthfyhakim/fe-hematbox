@@ -67,7 +67,7 @@ const getImageUrl = (imagePath) => {
   if (!imagePath) {
     return "https://images.unsplash.com/photo-1546069901-ba9599a7e63c";
   }
-  return `http://localhost:8080/${imagePath.replace(/\\/g, "/")}`;
+  return `https://hematbox.sugengaldi.my.id/${imagePath.replace(/\\/g, "/")}`;
 };
 
 const formatPickupTime = (start, end) => {
@@ -243,14 +243,9 @@ const getStatusStyle = (status) => {
 
       <!-- KARTU RINGKASAN -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div
-          v-for="(item, key, index) in summaryData"
-          :key="key"
-          v-motion
-          :initial="{ opacity: 0, y: 50 }"
+        <div v-for="(item, key, index) in summaryData" :key="key" v-motion :initial="{ opacity: 0, y: 50 }"
           :enter="{ opacity: 1, y: 0, transition: { delay: index * 100 } }"
-          :class="`relative overflow-hidden p-6 rounded-2xl shadow-lg text-white bg-gradient-to-br ${item.gradient} transition-all duration-300 transform hover:scale-105 hover:shadow-2xl`"
-        >
+          :class="`relative overflow-hidden p-6 rounded-2xl shadow-lg text-white bg-gradient-to-br ${item.gradient} transition-all duration-300 transform hover:scale-105 hover:shadow-2xl`">
           <div class="relative z-10">
             <div class="flex justify-between items-start">
               <div>
@@ -268,35 +263,19 @@ const getStatusStyle = (status) => {
       </div>
 
       <!-- TOOLBAR PENCARIAN & FILTER -->
-      <div
-        class="bg-white rounded-2xl shadow-lg p-4 mb-8 flex flex-col md:flex-row items-center gap-4"
-      >
+      <div class="bg-white rounded-2xl shadow-lg p-4 mb-8 flex flex-col md:flex-row items-center gap-4">
         <div class="relative flex-grow w-full md:w-auto">
-          <Icon
-            icon="mdi:magnify"
-            class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2"
-          />
-          <input
-            v-model="searchQuery"
-            type="text"
-            placeholder="Cari pesanan (nama, toko, atau kode)..."
-            class="w-full pl-12 pr-4 py-3 bg-slate-50 border-transparent rounded-lg focus:ring-2 focus:ring-teal-300 transition"
-          />
+          <Icon icon="mdi:magnify" class="w-5 h-5 text-gray-400 absolute left-4 top-1/2 -translate-y-1/2" />
+          <input v-model="searchQuery" type="text" placeholder="Cari pesanan (nama, toko, atau kode)..."
+            class="w-full pl-12 pr-4 py-3 bg-slate-50 border-transparent rounded-lg focus:ring-2 focus:ring-teal-300 transition" />
         </div>
-        <nav
-          class="p-1.5 bg-gray-100 rounded-lg flex items-center gap-2 overflow-x-auto"
-        >
-          <button
-            v-for="status in possibleStatuses"
-            :key="status"
-            @click="activeFilter = status"
-            :class="[
-              'px-4 py-2 rounded-md text-sm font-semibold transition-all whitespace-nowrap',
-              activeFilter === status
-                ? 'bg-white text-teal-600 shadow-sm'
-                : 'text-gray-500 hover:bg-white/50',
-            ]"
-          >
+        <nav class="p-1.5 bg-gray-100 rounded-lg flex items-center gap-2 overflow-x-auto">
+          <button v-for="status in possibleStatuses" :key="status" @click="activeFilter = status" :class="[
+            'px-4 py-2 rounded-md text-sm font-semibold transition-all whitespace-nowrap',
+            activeFilter === status
+              ? 'bg-white text-teal-600 shadow-sm'
+              : 'text-gray-500 hover:bg-white/50',
+          ]">
             {{ status }}
           </button>
         </nav>
@@ -305,24 +284,15 @@ const getStatusStyle = (status) => {
       <!-- ▼▼▼ 4. TAMBAHKAN BLOK KONDISIONAL UNTUK LOADING, ERROR, DAN DATA ▼▼▼ -->
       <!-- State Loading -->
       <div v-if="isLoading" class="text-center py-24">
-        <Icon
-          icon="mdi:loading"
-          class="animate-spin w-16 h-16 text-teal-500 mx-auto"
-        />
+        <Icon icon="mdi:loading" class="animate-spin w-16 h-16 text-teal-500 mx-auto" />
         <h3 class="mt-4 text-xl font-semibold text-gray-700">
           Memuat Pesanan Anda...
         </h3>
       </div>
 
       <!-- State Error -->
-      <div
-        v-else-if="errorMessage"
-        class="text-center py-24 bg-red-50 rounded-2xl"
-      >
-        <Icon
-          icon="mdi:alert-circle-outline"
-          class="mx-auto w-16 h-16 text-red-500"
-        />
+      <div v-else-if="errorMessage" class="text-center py-24 bg-red-50 rounded-2xl">
+        <Icon icon="mdi:alert-circle-outline" class="mx-auto w-16 h-16 text-red-500" />
         <h3 class="mt-4 text-xl font-semibold text-red-700">
           Oops! Terjadi Kesalahan
         </h3>
@@ -334,33 +304,17 @@ const getStatusStyle = (status) => {
         <!-- Daftar Pesanan -->
         <div v-if="filteredOrders.length > 0">
           <div class="space-y-6">
-            <div
-              v-for="(order, index) in paginatedOrders"
-              :key="order.id"
-              v-motion
-              :initial="{ opacity: 0, y: 50 }"
+            <div v-for="(order, index) in paginatedOrders" :key="order.id" v-motion :initial="{ opacity: 0, y: 50 }"
               :enter="{ opacity: 1, y: 0, transition: { delay: index * 100 } }"
-              class="bg-white/60 backdrop-blur-lg rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl border border-white/30"
-            >
+              class="bg-white/60 backdrop-blur-lg rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl border border-white/30">
               <div class="p-6">
-                <div
-                  class="flex flex-col sm:flex-row items-start justify-between gap-4 mb-4"
-                >
+                <div class="flex flex-col sm:flex-row items-start justify-between gap-4 mb-4">
                   <div class="flex items-center gap-5">
-                    <img
-                      :src="order.image"
-                      :alt="order.foodName"
-                      class="w-24 h-24 rounded-xl object-cover"
-                    />
+                    <img :src="order.image" :alt="order.foodName" class="w-24 h-24 rounded-xl object-cover" />
                     <div>
-                      <span
-                        :class="getStatusStyle(order.status).tag"
-                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-2"
-                      >
-                        <Icon
-                          :icon="getStatusStyle(order.status).icon"
-                          class="w-4 h-4"
-                        />{{ order.status }}
+                      <span :class="getStatusStyle(order.status).tag"
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-2">
+                        <Icon :icon="getStatusStyle(order.status).icon" class="w-4 h-4" />{{ order.status }}
                       </span>
                       <h2 class="text-xl font-bold text-gray-800">
                         {{ order.foodName }}
@@ -377,34 +331,23 @@ const getStatusStyle = (status) => {
                     </p>
                   </div>
                 </div>
-                <div
-                  class="grid grid-cols-1 md:grid-cols-3 gap-6 py-4 border-t border-gray-100"
-                >
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 py-4 border-t border-gray-100">
                   <div class="flex items-center gap-3">
-                    <Icon
-                      icon="mdi:clock-outline"
-                      class="w-6 h-6 text-teal-500 flex-shrink-0"
-                    />
+                    <Icon icon="mdi:clock-outline" class="w-6 h-6 text-teal-500 flex-shrink-0" />
                     <div class="text-sm">
                       <p class="font-semibold text-gray-700">Waktu Ambil</p>
                       <p class="text-gray-500">{{ order.pickupTime }}</p>
                     </div>
                   </div>
                   <div class="flex items-center gap-3">
-                    <Icon
-                      icon="mdi:barcode-scan"
-                      class="w-6 h-6 text-teal-500 flex-shrink-0"
-                    />
+                    <Icon icon="mdi:barcode-scan" class="w-6 h-6 text-teal-500 flex-shrink-0" />
                     <div class="text-sm">
                       <p class="font-semibold text-gray-700">Kode Pesanan</p>
                       <p class="text-gray-500 font-mono">{{ order.id }}</p>
                     </div>
                   </div>
                   <div class="flex items-center gap-3">
-                    <Icon
-                      icon="mdi:map-marker-outline"
-                      class="w-6 h-6 text-teal-500 flex-shrink-0"
-                    />
+                    <Icon icon="mdi:map-marker-outline" class="w-6 h-6 text-teal-500 flex-shrink-0" />
                     <div class="text-sm">
                       <p class="font-semibold text-gray-700">Alamat Toko</p>
                       <p class="text-gray-500">{{ order.address }}</p>
@@ -415,27 +358,23 @@ const getStatusStyle = (status) => {
                 <div class="flex items-center justify-end gap-3 mt-4">
                   <template v-if="order.status === 'Aktif'">
                     <button
-                      class="px-5 py-2 text-sm font-semibold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-all"
-                    >
+                      class="px-5 py-2 text-sm font-semibold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-all">
                       Batalkan
                     </button>
                     <button
-                      class="px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-emerald-500 hover:shadow-lg rounded-lg transition-all"
-                    >
+                      class="px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-teal-500 to-emerald-500 hover:shadow-lg rounded-lg transition-all">
                       Lihat Kode
                     </button>
                   </template>
                   <template v-else-if="order.status === 'Siap Diambil'">
                     <button
-                      class="px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:scale-105"
-                    >
+                      class="px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg shadow-md hover:shadow-lg transition-all transform hover:scale-105">
                       Tandai Sudah Diambil
                     </button>
                   </template>
                   <template v-else-if="order.status === 'Selesai'">
                     <button
-                      class="px-5 py-2 text-sm font-semibold text-white bg-gray-700 hover:bg-gray-800 rounded-lg transition-all"
-                    >
+                      class="px-5 py-2 text-sm font-semibold text-white bg-gray-700 hover:bg-gray-800 rounded-lg transition-all">
                       Pesan Lagi
                     </button>
                   </template>
@@ -449,47 +388,31 @@ const getStatusStyle = (status) => {
             </div>
           </div>
           <!-- Kontrol Paginasi -->
-          <div
-            v-if="totalPages > 1"
-            class="flex items-center justify-between mt-8"
-          >
-            <button
-              @click="goToPage(currentPage - 1)"
-              :disabled="currentPage === 1"
-              class="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-600 bg-white rounded-lg shadow-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
-            >
+          <div v-if="totalPages > 1" class="flex items-center justify-between mt-8">
+            <button @click="goToPage(currentPage - 1)" :disabled="currentPage === 1"
+              class="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-600 bg-white rounded-lg shadow-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition">
               <Icon icon="mdi:chevron-left" /> Sebelumnya
             </button>
             <div class="flex items-center gap-2">
-              <button
-                v-for="page in totalPages"
-                :key="page"
-                @click="goToPage(page)"
-                :class="[
-                  'w-10 h-10 rounded-lg text-sm font-semibold transition',
-                  currentPage === page
-                    ? 'bg-teal-500 text-white shadow-lg'
-                    : 'bg-white text-gray-600 shadow-md hover:bg-gray-100',
-                ]"
-              >
+              <button v-for="page in totalPages" :key="page" @click="goToPage(page)" :class="[
+                'w-10 h-10 rounded-lg text-sm font-semibold transition',
+                currentPage === page
+                  ? 'bg-teal-500 text-white shadow-lg'
+                  : 'bg-white text-gray-600 shadow-md hover:bg-gray-100',
+              ]">
                 {{ page }}
               </button>
             </div>
-            <button
-              @click="goToPage(currentPage + 1)"
-              :disabled="currentPage === totalPages"
-              class="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-600 bg-white rounded-lg shadow-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition"
-            >
-              Berikutnya <Icon icon="mdi:chevron-right" />
+            <button @click="goToPage(currentPage + 1)" :disabled="currentPage === totalPages"
+              class="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-600 bg-white rounded-lg shadow-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition">
+              Berikutnya
+              <Icon icon="mdi:chevron-right" />
             </button>
           </div>
         </div>
         <!-- Pesan jika tidak ada data -->
         <div v-else class="text-center py-24">
-          <Icon
-            icon="mdi:receipt-text-search-outline"
-            class="mx-auto w-16 h-16 text-gray-400"
-          />
+          <Icon icon="mdi:receipt-text-search-outline" class="mx-auto w-16 h-16 text-gray-400" />
           <h3 class="mt-4 text-xl font-semibold text-gray-700">
             Belum Ada Pesanan
           </h3>

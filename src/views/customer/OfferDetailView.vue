@@ -363,36 +363,26 @@ const getImageUrl = (imagePath) => {
   }
 
   // Ganti port ke 8080 DAN ganti semua karakter `\` menjadi `/`
-  return `http://localhost:8080/${imagePath.replace(/\\/g, "/")}`;
+  return `https://hematbox.sugengaldi.my.id/${imagePath.replace(/\\/g, "/")}`;
 };
 </script>
 
 <template>
-  <div
-    class="bg-gradient-to-br from-slate-50 via-blue-50 to-emerald-50 min-h-screen"
-  >
-    <div
-      class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 shadow-xl"
-    >
+  <div class="bg-gradient-to-br from-slate-50 via-blue-50 to-emerald-50 min-h-screen">
+    <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 shadow-xl">
       <div class="max-w-6xl mx-auto px-4 py-5">
         <div class="flex items-center justify-between">
-          <button
-            @click="router.back()"
-            class="flex items-center gap-2 text-white hover:bg-white/20 px-4 py-2.5 rounded-xl transition-all font-semibold backdrop-blur-sm"
-          >
+          <button @click="router.back()"
+            class="flex items-center gap-2 text-white hover:bg-white/20 px-4 py-2.5 rounded-xl transition-all font-semibold backdrop-blur-sm">
             <Icon icon="mdi:arrow-left" class="w-6 h-6" />
             <span>Kembali</span>
           </button>
 
           <div class="flex items-center gap-2">
-            <button
-              class="text-white hover:bg-white/20 p-2.5 rounded-xl transition-all backdrop-blur-sm"
-            >
+            <button class="text-white hover:bg-white/20 p-2.5 rounded-xl transition-all backdrop-blur-sm">
               <Icon icon="mdi:share-variant" class="w-6 h-6" />
             </button>
-            <button
-              class="text-white hover:bg-white/20 p-2.5 rounded-xl transition-all backdrop-blur-sm"
-            >
+            <button class="text-white hover:bg-white/20 p-2.5 rounded-xl transition-all backdrop-blur-sm">
               <Icon icon="mdi:heart-outline" class="w-6 h-6" />
             </button>
           </div>
@@ -402,23 +392,14 @@ const getImageUrl = (imagePath) => {
 
     <div v-if="isLoading" class="flex items-center justify-center min-h-[70vh]">
       <div class="text-center">
-        <Icon
-          icon="mdi:loading"
-          class="w-16 h-16 text-emerald-500 animate-spin mx-auto"
-        />
+        <Icon icon="mdi:loading" class="w-16 h-16 text-emerald-500 animate-spin mx-auto" />
         <p class="mt-4 text-xl font-semibold text-gray-700">Memuat data...</p>
       </div>
     </div>
 
-    <div
-      v-else-if="errorMessage"
-      class="flex items-center justify-center min-h-[70vh]"
-    >
+    <div v-else-if="errorMessage" class="flex items-center justify-center min-h-[70vh]">
       <div class="text-center">
-        <Icon
-          icon="mdi:alert-circle-outline"
-          class="w-16 h-16 text-red-500 mx-auto"
-        />
+        <Icon icon="mdi:alert-circle-outline" class="w-16 h-16 text-red-500 mx-auto" />
         <p class="mt-4 text-xl font-semibold text-red-700">
           {{ errorMessage }}
         </p>
@@ -428,38 +409,26 @@ const getImageUrl = (imagePath) => {
     <div v-else-if="offer" class="max-w-6xl mx-auto px-4 py-8">
       <div class="grid lg:grid-cols-3 gap-6">
         <div class="lg:col-span-2 space-y-6">
-          <div
-            class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
-          >
+          <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
             <div class="relative group">
-              <img
-                :src="getImageUrl(offer.image_url)"
-                :alt="offer.title"
-                class="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
-              ></div>
+              <img :src="getImageUrl(offer.image_url)" :alt="offer.title"
+                class="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
 
               <div class="absolute top-4 right-4">
                 <span
-                  :class="`${
-                    offer.status === 'aktif'
+                  :class="`${offer.status === 'aktif'
                       ? 'bg-gradient-to-r from-green-500 to-emerald-600'
                       : 'bg-gradient-to-r from-gray-500 to-gray-600'
-                  } text-white px-4 py-2 rounded-xl text-sm font-bold shadow-xl backdrop-blur-sm flex items-center gap-2`"
-                >
-                  <span
-                    class="w-2 h-2 rounded-full bg-white animate-pulse"
-                  ></span>
+                    } text-white px-4 py-2 rounded-xl text-sm font-bold shadow-xl backdrop-blur-sm flex items-center gap-2`">
+                  <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
                   {{ offer.status === "aktif" ? "Aktif" : "Tidak Aktif" }}
                 </span>
               </div>
 
               <div class="absolute top-4 left-4">
                 <div
-                  class="bg-gradient-to-r from-amber-400 to-orange-500 text-white px-4 py-2 rounded-xl shadow-xl backdrop-blur-sm flex items-center gap-2 font-bold"
-                >
+                  class="bg-gradient-to-r from-amber-400 to-orange-500 text-white px-4 py-2 rounded-xl shadow-xl backdrop-blur-sm flex items-center gap-2 font-bold">
                   <Icon icon="mdi:gift" class="w-5 h-5" />
                   <span>Magic Box</span>
                 </div>
@@ -467,19 +436,15 @@ const getImageUrl = (imagePath) => {
             </div>
           </div>
 
-          <div
-            class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div class="flex items-start gap-3 mb-4">
               <div
-                class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center flex-shrink-0"
-              >
+                class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center flex-shrink-0">
                 <Icon icon="mdi:food" class="w-7 h-7 text-white" />
               </div>
               <div>
                 <h1
-                  class="text-3xl font-black text-gray-900 mb-2 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent"
-                >
+                  class="text-3xl font-black text-gray-900 mb-2 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                   {{ offer.title }}
                 </h1>
                 <p class="text-gray-600 text-lg">
@@ -489,18 +454,11 @@ const getImageUrl = (imagePath) => {
             </div>
 
             <div class="border-t border-gray-200 pt-6 mt-6">
-              <h3
-                class="text-sm font-bold text-gray-700 mb-4 flex items-center gap-2 uppercase tracking-wide"
-              >
-                <Icon
-                  icon="mdi:clock-outline"
-                  class="w-6 h-6 text-emerald-600"
-                />
+              <h3 class="text-sm font-bold text-gray-700 mb-4 flex items-center gap-2 uppercase tracking-wide">
+                <Icon icon="mdi:clock-outline" class="w-6 h-6 text-emerald-600" />
                 Waktu Pengambilan
               </h3>
-              <div
-                class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-5 border-2 border-blue-200"
-              >
+              <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-5 border-2 border-blue-200">
                 <div class="flex items-center gap-3 mb-2">
                   <Icon icon="mdi:calendar" class="w-5 h-5 text-blue-600" />
                   <p class="text-sm font-semibold text-blue-900">
@@ -519,44 +477,28 @@ const getImageUrl = (imagePath) => {
 
             <div class="border-t border-gray-200 mt-6 pt-6">
               <div class="flex items-center justify-between mb-4">
-                <h3
-                  class="text-sm font-bold text-gray-700 uppercase tracking-wide"
-                >
+                <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wide">
                   Status Stok
                 </h3>
-                <span
-                  :class="`${stockStatus.color} text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-lg`"
-                >
+                <span :class="`${stockStatus.color} text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-lg`">
                   {{ stockStatus.text }}
                 </span>
               </div>
               <div class="flex items-center gap-3 mb-3">
-                <div
-                  class="flex-1 bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner"
-                >
-                  <div
-                    :class="`h-full ${stockStatus.color} transition-all duration-700 shadow-lg`"
-                    :style="`width: ${stockPercentage}%`"
-                  ></div>
+                <div class="flex-1 bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner">
+                  <div :class="`h-full ${stockStatus.color} transition-all duration-700 shadow-lg`"
+                    :style="`width: ${stockPercentage}%`"></div>
                 </div>
-                <span
-                  class="text-lg font-black text-gray-900 min-w-[80px] text-right"
-                >
+                <span class="text-lg font-black text-gray-900 min-w-[80px] text-right">
                   {{ offer.remaining_portion }}/{{ offer.total_portion }}
                 </span>
               </div>
-              <div
-                :class="`${
-                  stockStatus.bgLight
+              <div :class="`${stockStatus.bgLight
                 } rounded-lg p-3 border-2 ${stockStatus.textColor.replace(
                   'text-',
                   'border-'
-                )}`"
-              >
-                <p
-                  class="text-sm font-bold text-center"
-                  :class="stockStatus.textColor"
-                >
+                )}`">
+                <p class="text-sm font-bold text-center" :class="stockStatus.textColor">
                   <Icon icon="mdi:information" class="w-4 h-4 inline mr-1" />
                   {{ Math.round(stockPercentage) }}% stok masih tersedia
                 </p>
@@ -564,22 +506,16 @@ const getImageUrl = (imagePath) => {
             </div>
           </div>
 
-          <div
-            class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
-          >
-            <h3
-              class="text-2xl font-black text-gray-900 mb-6 flex items-center gap-3"
-            >
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <h3 class="text-2xl font-black text-gray-900 mb-6 flex items-center gap-3">
               <Icon icon="mdi:star-circle" class="w-8 h-8 text-emerald-600" />
               Keuntungan
             </h3>
             <div class="grid md:grid-cols-2 gap-4">
               <div
-                class="flex items-start gap-4 p-4 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border-2 border-emerald-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-              >
+                class="flex items-start gap-4 p-4 bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl border-2 border-emerald-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                 <div
-                  class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center flex-shrink-0"
-                >
+                  class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Icon icon="mdi:tag" class="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -590,11 +526,9 @@ const getImageUrl = (imagePath) => {
                 </div>
               </div>
               <div
-                class="flex items-start gap-4 p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl border-2 border-blue-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-              >
+                class="flex items-start gap-4 p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl border-2 border-blue-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                 <div
-                  class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0"
-                >
+                  class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Icon icon="mdi:clock-fast" class="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -605,11 +539,9 @@ const getImageUrl = (imagePath) => {
                 </div>
               </div>
               <div
-                class="flex items-start gap-4 p-4 bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl border-2 border-orange-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-              >
+                class="flex items-start gap-4 p-4 bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl border-2 border-orange-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                 <div
-                  class="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-600 rounded-lg flex items-center justify-center flex-shrink-0"
-                >
+                  class="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-600 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Icon icon="mdi:earth" class="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -620,11 +552,9 @@ const getImageUrl = (imagePath) => {
                 </div>
               </div>
               <div
-                class="flex items-start gap-4 p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border-2 border-purple-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-              >
+                class="flex items-start gap-4 p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border-2 border-purple-200 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                 <div
-                  class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center flex-shrink-0"
-                >
+                  class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Icon icon="mdi:shield-check" class="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -641,12 +571,10 @@ const getImageUrl = (imagePath) => {
         <div class="lg:col-span-1">
           <div class="sticky top-20">
             <div
-              class="bg-gradient-to-br from-white to-emerald-50 rounded-2xl p-8 shadow-xl border-2 border-emerald-200 hover:shadow-2xl transition-all duration-300"
-            >
+              class="bg-gradient-to-br from-white to-emerald-50 rounded-2xl p-8 shadow-xl border-2 border-emerald-200 hover:shadow-2xl transition-all duration-300">
               <div class="text-center mb-8">
                 <div
-                  class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-bold mb-4 shadow-lg"
-                >
+                  class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-bold mb-4 shadow-lg">
                   <Icon icon="mdi:flash" class="w-4 h-4" />
                   <span>Best Deal</span>
                 </div>
@@ -654,25 +582,18 @@ const getImageUrl = (imagePath) => {
                   Total Harga
                 </p>
                 <p
-                  class="text-5xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2"
-                >
+                  class="text-5xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
                   {{ formatCurrency(offer.price) }}
                 </p>
                 <p class="text-xs text-gray-500">per porsi</p>
               </div>
 
-              <button
-                @click="goToCheckout"
-                :disabled="
-                  offer.status !== 'aktif' || offer.remaining_portion === 0
-                "
-                :class="
-                  offer.status === 'aktif' && offer.remaining_portion > 0
+              <button @click="goToCheckout" :disabled="offer.status !== 'aktif' || offer.remaining_portion === 0
+                " :class="offer.status === 'aktif' && offer.remaining_portion > 0
                     ? 'bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-700 hover:via-teal-700 hover:to-cyan-700 text-white shadow-xl hover:shadow-2xl hover:-translate-y-1'
                     : 'bg-gradient-to-r from-gray-300 to-gray-400 text-gray-600 cursor-not-allowed'
-                "
-                class="w-full py-4 rounded-xl font-black text-lg transition-all duration-300 flex items-center justify-center gap-3 mb-6 transform active:scale-95"
-              >
+                  "
+                class="w-full py-4 rounded-xl font-black text-lg transition-all duration-300 flex items-center justify-center gap-3 mb-6 transform active:scale-95">
                 <Icon icon="mdi:cart" class="w-6 h-6" />
                 {{
                   offer.remaining_portion === 0
@@ -684,11 +605,8 @@ const getImageUrl = (imagePath) => {
 
               <div class="space-y-4 pt-6 border-t-2 border-emerald-200">
                 <div
-                  class="flex justify-between items-center text-sm bg-gradient-to-r from-blue-50 to-cyan-50 p-3 rounded-lg border border-blue-200"
-                >
-                  <span
-                    class="text-gray-700 font-semibold flex items-center gap-2"
-                  >
+                  class="flex justify-between items-center text-sm bg-gradient-to-r from-blue-50 to-cyan-50 p-3 rounded-lg border border-blue-200">
+                  <span class="text-gray-700 font-semibold flex items-center gap-2">
                     <Icon icon="mdi:clock" class="w-4 h-4 text-blue-600" />
                     Jam Ambil
                   </span>
@@ -698,15 +616,9 @@ const getImageUrl = (imagePath) => {
                   </span>
                 </div>
                 <div
-                  class="flex justify-between items-center text-sm bg-gradient-to-r from-purple-50 to-pink-50 p-3 rounded-lg border border-purple-200"
-                >
-                  <span
-                    class="text-gray-700 font-semibold flex items-center gap-2"
-                  >
-                    <Icon
-                      icon="mdi:package-variant"
-                      class="w-4 h-4 text-purple-600"
-                    />
+                  class="flex justify-between items-center text-sm bg-gradient-to-r from-purple-50 to-pink-50 p-3 rounded-lg border border-purple-200">
+                  <span class="text-gray-700 font-semibold flex items-center gap-2">
+                    <Icon icon="mdi:package-variant" class="w-4 h-4 text-purple-600" />
                     Tersisa
                   </span>
                   <span class="font-black text-purple-900">
@@ -714,24 +626,15 @@ const getImageUrl = (imagePath) => {
                   </span>
                 </div>
                 <div
-                  class="flex justify-between items-center text-sm bg-gradient-to-r from-amber-50 to-orange-50 p-3 rounded-lg border border-amber-200"
-                >
-                  <span
-                    class="text-gray-700 font-semibold flex items-center gap-2"
-                  >
-                    <Icon
-                      icon="mdi:check-circle"
-                      class="w-4 h-4 text-amber-600"
-                    />
+                  class="flex justify-between items-center text-sm bg-gradient-to-r from-amber-50 to-orange-50 p-3 rounded-lg border border-amber-200">
+                  <span class="text-gray-700 font-semibold flex items-center gap-2">
+                    <Icon icon="mdi:check-circle" class="w-4 h-4 text-amber-600" />
                     Status
                   </span>
-                  <span
-                    :class="`font-black ${
-                      offer.status === 'aktif'
-                        ? 'text-green-600'
-                        : 'text-gray-600'
-                    }`"
-                  >
+                  <span :class="`font-black ${offer.status === 'aktif'
+                      ? 'text-green-600'
+                      : 'text-gray-600'
+                    }`">
                     {{ offer.status === "aktif" ? "✓ Aktif" : "✗ Tidak Aktif" }}
                   </span>
                 </div>
@@ -739,50 +642,32 @@ const getImageUrl = (imagePath) => {
 
               <div class="mt-6 pt-6 border-t-2 border-emerald-200">
                 <p
-                  class="text-center text-xs text-gray-600 flex items-center justify-center gap-2 bg-green-50 p-3 rounded-lg border border-green-200"
-                >
-                  <Icon
-                    icon="mdi:shield-check"
-                    class="w-5 h-5 text-green-600"
-                  />
-                  <span class="font-semibold"
-                    >Pembayaran 100% aman & terpercaya</span
-                  >
+                  class="text-center text-xs text-gray-600 flex items-center justify-center gap-2 bg-green-50 p-3 rounded-lg border border-green-200">
+                  <Icon icon="mdi:shield-check" class="w-5 h-5 text-green-600" />
+                  <span class="font-semibold">Pembayaran 100% aman & terpercaya</span>
                 </p>
               </div>
             </div>
 
-            <div
-              class="mt-6 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl p-6 shadow-xl text-white"
-            >
+            <div class="mt-6 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl p-6 shadow-xl text-white">
               <div class="flex items-start gap-4">
                 <div
-                  class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center flex-shrink-0"
-                >
+                  class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center flex-shrink-0">
                   <Icon icon="mdi:information" class="w-6 h-6" />
                 </div>
                 <div>
                   <p class="font-black text-lg mb-3">Cara Pengambilan</p>
                   <ul class="text-sm space-y-2 text-blue-50">
                     <li class="flex items-start gap-2">
-                      <Icon
-                        icon="mdi:check-circle"
-                        class="w-5 h-5 flex-shrink-0 mt-0.5"
-                      />
+                      <Icon icon="mdi:check-circle" class="w-5 h-5 flex-shrink-0 mt-0.5" />
                       <span>Lakukan pemesanan terlebih dahulu</span>
                     </li>
                     <li class="flex items-start gap-2">
-                      <Icon
-                        icon="mdi:check-circle"
-                        class="w-5 h-5 flex-shrink-0 mt-0.5"
-                      />
+                      <Icon icon="mdi:check-circle" class="w-5 h-5 flex-shrink-0 mt-0.5" />
                       <span>Tunjukkan kode booking saat pengambilan</span>
                     </li>
                     <li class="flex items-start gap-2">
-                      <Icon
-                        icon="mdi:check-circle"
-                        class="w-5 h-5 flex-shrink-0 mt-0.5"
-                      />
+                      <Icon icon="mdi:check-circle" class="w-5 h-5 flex-shrink-0 mt-0.5" />
                       <span>Ambil sesuai jadwal yang ditentukan</span>
                     </li>
                   </ul>

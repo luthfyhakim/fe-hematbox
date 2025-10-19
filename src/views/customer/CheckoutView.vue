@@ -207,7 +207,7 @@ const handlePayment = async () => {
 };
 
 // --- KONFIGURASI GAMBAR ---
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "https://hematbox.sugengaldi.my.id";
 const getImageUrl = (imagePath) => {
   if (!imagePath) {
     return "https://images.unsplash.com/photo-1546069901-ba9599a7e63c"; // Gambar default
@@ -221,17 +221,11 @@ const getImageUrl = (imagePath) => {
     <div class="container mx-auto px-4 sm:px-6 py-8 md:py-12">
       <!-- BREADCRUMB -->
       <nav class="flex items-center gap-2 text-sm text-gray-500 mb-8">
-        <router-link
-          :to="{ name: 'smart-shopping' }"
-          class="hover:underline hover:text-emerald-600"
-          >Penawaran</router-link
-        >
+        <router-link :to="{ name: 'smart-shopping' }"
+          class="hover:underline hover:text-emerald-600">Penawaran</router-link>
         <Icon icon="mdi:chevron-right" class="w-4 h-4" />
-        <router-link
-          :to="{ name: 'offer-detail', params: { id: offer.id } }"
-          class="hover:underline hover:text-emerald-600"
-          >{{ offer.name }}</router-link
-        >
+        <router-link :to="{ name: 'offer-detail', params: { id: offer.id } }"
+          class="hover:underline hover:text-emerald-600">{{ offer.name }}</router-link>
         <Icon icon="mdi:chevron-right" class="w-4 h-4" />
         <span class="font-medium text-gray-700">Pembayaran</span>
       </nav>
@@ -240,42 +234,28 @@ const getImageUrl = (imagePath) => {
         <!-- KOLOM KIRI: Opsi Pembayaran & Detail -->
         <div class="lg:col-span-2 space-y-8">
           <!-- Pilihan Metode Pembayaran -->
-          <div
-            class="bg-white rounded-3xl shadow-xl p-8 border border-gray-100"
-          >
+          <div class="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
             <h2 class="text-2xl font-bold text-gray-800 mb-6">
               Pilih Metode Pembayaran
             </h2>
             <div class="space-y-4">
-              <div
-                v-for="method in paymentMethods"
-                :key="method.id"
-                @click="selectedPayment = method.id"
+              <div v-for="method in paymentMethods" :key="method.id" @click="selectedPayment = method.id"
                 class="p-5 border-2 rounded-2xl flex items-center gap-4 cursor-pointer transition-all duration-300"
-                :class="
-                  selectedPayment === method.id
+                :class="selectedPayment === method.id
                     ? 'border-emerald-500 bg-emerald-50 shadow-md'
                     : 'border-gray-200 hover:border-emerald-300'
-                "
-              >
+                  ">
                 <Icon :icon="method.icon" class="w-8 h-8 text-emerald-600" />
                 <div>
                   <p class="font-bold text-gray-800">{{ method.name }}</p>
                   <p class="text-sm text-gray-500">{{ method.description }}</p>
                 </div>
-                <div
-                  class="ml-auto w-6 h-6 border-2 rounded-full flex items-center justify-center transition-all"
-                  :class="
-                    selectedPayment === method.id
+                <div class="ml-auto w-6 h-6 border-2 rounded-full flex items-center justify-center transition-all"
+                  :class="selectedPayment === method.id
                       ? 'border-emerald-500 bg-emerald-500'
                       : 'border-gray-300'
-                  "
-                >
-                  <Icon
-                    v-if="selectedPayment === method.id"
-                    icon="mdi:check-bold"
-                    class="w-4 h-4 text-white"
-                  />
+                    ">
+                  <Icon v-if="selectedPayment === method.id" icon="mdi:check-bold" class="w-4 h-4 text-white" />
                 </div>
               </div>
             </div>
@@ -306,20 +286,15 @@ const getImageUrl = (imagePath) => {
 
         <!-- KOLOM KANAN: Ringkasan Pesanan (Sticky) -->
         <div class="lg:sticky lg:top-6 self-start">
-          <div
-            class="bg-white rounded-3xl shadow-2xl p-8 border-2 border-emerald-200 space-y-4"
-          >
+          <div class="bg-white rounded-3xl shadow-2xl p-8 border-2 border-emerald-200 space-y-4">
             <h2 class="text-2xl font-bold text-gray-800 text-center mb-4">
               Ringkasan Pesanan
             </h2>
 
             <!-- Detail Item -->
             <div class="flex gap-4 pb-4 border-b">
-              <img
-                :src="getImageUrl(offer.image_url)"
-                :alt="offer.title"
-                class="w-24 h-24 rounded-2xl object-cover shadow-md"
-              />
+              <img :src="getImageUrl(offer.image_url)" :alt="offer.title"
+                class="w-24 h-24 rounded-2xl object-cover shadow-md" />
               <div>
                 <p class="font-bold text-lg text-gray-800">{{ offer.title }}</p>
                 <p class="text-sm text-gray-500">
@@ -327,9 +302,7 @@ const getImageUrl = (imagePath) => {
                 </p>
                 <p class="text-lg font-black text-gray-900 mt-1">
                   {{ formatCurrency(offer.price) }}
-                  <span class="text-sm font-medium text-gray-600"
-                    >x {{ quantity }}</span
-                  >
+                  <span class="text-sm font-medium text-gray-600">x {{ quantity }}</span>
                 </p>
               </div>
             </div>
@@ -359,10 +332,8 @@ const getImageUrl = (imagePath) => {
             </div>
 
             <!-- Tombol Bayar -->
-            <button
-              @click="handlePayment"
-              class="w-full mt-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3"
-            >
+            <button @click="handlePayment"
+              class="w-full mt-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3">
               <Icon icon="mdi:shield-check-outline" class="w-6 h-6" />
               <span>Bayar Sekarang</span>
             </button>
